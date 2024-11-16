@@ -1,0 +1,94 @@
+
+to clone the repo on the terminal:
+If Git is not already installed, install it using the following command:
+
+sudo apt update
+sudo apt install git -y  # For Debian/Ubuntu-based systems
+# OR
+sudo yum install git -y  # For RHEL/CentOS-based systems
+# OR
+sudo dnf install git -y  # For Fedora-based systems
+
+Step 2: Verify Git Installation
+
+Check if Git is installed and its version using:
+
+git --version
+
+Step 3: Clone the Repository
+
+git clone <repository-url>
+
+Step 4: Navigate into the Cloned Repository
+
+
+Change into the cloned repository directory:
+
+cd example-repo
+
+
+
+
+
+commands to run the files:
+sudo apt-get update
+sudo apt-get install docker docker-compose
+
+start kafka and zookeeper
+docker-compose up -d
+
+check zookeeper running
+docker ps
+
+docker to run redis 
+docker run --name redis -p 6379:6379 -d redis
+
+setup redis - install redis using (pip install kafka-python redis --break-system-packages) (if youre in a venv like me)
+
+programs:
+1. yadtq.py (YADTQ Core Module)
+2. worker.py (Worker Code)
+3. client.py (Client Code)
+4. monitor.py (Monitoring Script)
+
+start the worker nodes: 
+python3 worker.py 1/2/3 - on 3 seperate terminals
+
+submit tasks via client 
+python3 client.py
+
+monitor using monitor 
+python3 monitor.py
+
+
+Expected Output
+Client
+
+Tasks submitted:
+ - Task ID: 123e4567-e89b-12d3-a456-426614174000
+ - Task ID: 123e4567-e89b-12d3-a456-426614174001
+ - Task ID: 123e4567-e89b-12d3-a456-426614174002
+ - Task ID: 123e4567-e89b-12d3-a456-426614174003
+ - Task ID: 123e4567-e89b-12d3-a456-426614174004
+
+Workers
+
+Worker 1 processing task: {'task-id': '123e4567-e89b-12d3-a456-426614174000', 'task': 'add', 'args': [1, 2]}
+Worker 2 processing task: {'task-id': '123e4567-e89b-12d3-a456-426614174001', 'task': 'sub', 'args': [2, 3]}
+Worker 3 processing task: {'task-id': '123e4567-e89b-12d3-a456-426614174002', 'task': 'multiply', 'args': [1, 2]}
+
+Monitor
+
+Task ID: 123e4567-e89b-12d3-a456-426614174000, Status: {'status': 'success', 'result': 3}
+Task ID: 123e4567-e89b-12d3-a456-426614174001, Status: {'status': 'success', 'result': -1}
+Task ID: 123e4567-e89b-12d3-a456-426614174002, Status: {'status': 'success', 'result': 2}
+
+
+
+after doing the above stop zookeeper and kafka 
+docker-compose down
+docker stop redis && docker rm redis
+
+
+
+
